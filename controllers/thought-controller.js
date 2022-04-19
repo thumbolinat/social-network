@@ -30,7 +30,7 @@ const thoughtController = {
       .sort({ _id: -1 })
       .then(dbThoughtData => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'No thoughts found with that id!' });
+          res.status(404).json({ message: 'Unavailable' });
           return;
         }
         res.json(dbThoughtData);
@@ -52,7 +52,7 @@ const thoughtController = {
         })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
-                res.status(404).json({ message: 'No user found with this id!' });
+                res.status(404).json({ message: 'Unavailable' });
                 return;
             }
             res.json(dbThoughtData);
@@ -64,7 +64,7 @@ const thoughtController = {
     Thought.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
       .then(dbThoughtData => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'No thoughts found with that id!' });
+          res.status(404).json({ message: 'Unavailable' });
           return;
         }
         res.json(dbThoughtData);
@@ -77,7 +77,7 @@ const thoughtController = {
     Thought.findOneAndDelete({ _id: params.id })
       .then(dbThoughtData => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'No thoughts found with that id!' });
+          res.status(404).json({ message: 'Unavailable' });
           return;
         }
         return User.findOneAndUpdate(
@@ -88,7 +88,7 @@ const thoughtController = {
       })
       .then(dbUserData => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No User found with this id!' });
+          res.status(404).json({ message: 'Unavailable' });
           return;
         }
         res.json(dbUserData);
@@ -105,7 +105,7 @@ const thoughtController = {
     .select('-__v')
     .then(dbThoughtData => {
         if (!dbThoughtData) {
-            res.status(404).json({message: 'No thoughts with this ID.'});
+            res.status(404).json({message: 'Unavailable'});
             return;
         }
         res.json(dbThoughtData);
@@ -121,7 +121,7 @@ const thoughtController = {
     )
       .then(dbThoughtData => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'Unavailable!'});
+          res.status(404).json({ message: 'Unavailable'});
           return;
         }
        res.json(dbThoughtData);
