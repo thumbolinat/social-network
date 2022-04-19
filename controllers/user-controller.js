@@ -24,7 +24,7 @@ const userController = {
       })
       .then(dbUserData => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No User found with this id!' });
+          res.status(404).json({ message: 'Sorry... this user does not exist' });
           return;
         }
         res.json(dbUserData);
