@@ -53,19 +53,23 @@ const userController = {
       })
       .catch(err => res.json(err));
   },
-  deleteUser({ params }, res) {
-    Thought.deleteMany({ userId: params.id })
-      .then(() => {
-        User.findOneAndDelete({ userId: params.id })
-          .then(dbUserData => {
-            if (!dbUserData) {
-              res.status(404).json({ message: 'Unavailable' });
-              return;
-            }
-            res.json(dbUserData);
-          });
+  deleteUser(req, res) {
+    User.findOneAndDelete({ _id: req.params.userId })
+      .then((dbUserData) => {
+        if (!dbUserData) {
+          return res.status(404).json({ message: 'No user with this id!' });
+        }
+
+        // BONUS: get ids of user's `thoughts` and delete them all
+        return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
       })
-      .catch(err => res.json(err));
+      .then(() => {
+        res.json({ message: 'User and associated thoughts deleted!' });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 
   addFriend({ params }, res) {
