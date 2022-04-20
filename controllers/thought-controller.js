@@ -1,9 +1,7 @@
 const { User, Thought} = require('../models');
 
 const thoughtController = {
-  // /api/thoughts
 
-  // get all thoughts
   getAllThought(req, res) {
     Thought.find({})
       .populate({
@@ -19,7 +17,6 @@ const thoughtController = {
       });
   },
 
-  // get one thoughts by id
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
       .populate({
@@ -73,7 +70,6 @@ const thoughtController = {
       .catch(err => res.json(err));
   },
 
-  // delete thought by ID
   deleteThought({ params }, res) {
     Thought.findOneAndDelete({ _id: params.id })
       .then(dbThoughtData => {
