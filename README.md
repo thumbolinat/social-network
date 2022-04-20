@@ -49,7 +49,7 @@
  
  ## Usage
   
-  This app does not have a front end so it will be tested using Insomnia.  Please see the demo video by clicking on the link 
+  This app does not have a front end so it will be tested using Insomnia.  Please see the demo video by clicking on the link https://youtu.be/-EbHNaktZvk
     
   <a name="contribution"></a>
   ## Contributing
